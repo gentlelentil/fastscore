@@ -71,14 +71,16 @@ def convert_cif_to_pdb(input_cif, output_pdb):
     print(f"Converted {input_cif} to {output_pdb}")
 
 def prepare_receptor(receptor_pdb, output_pdbqt, mgltools_path):
+    pythonsh = os.path.join(mgltools_path, "bin", "pythonsh")  # Use pythonsh from MGLTools bin directory
     prepare_receptor_script = os.path.join(mgltools_path, "MGLToolsPckgs", "AutoDockTools", "Utilities24", "prepare_receptor4.py")
-    command = f"pythonsh {prepare_receptor_script} -r {receptor_pdb} -o {output_pdbqt}"
+    command = f"{pythonsh} {prepare_receptor_script} -r {receptor_pdb} -o {output_pdbqt}"
     subprocess.run(command, shell=True, check=True)
     print(f"Receptor prepared: {output_pdbqt}")
 
 def prepare_ligand(ligand_pdb, output_pdbqt, mgltools_path):
+    pythonsh = os.path.join(mgltools_path, "bin", "pythonsh")  # Use pythonsh from MGLTools bin directory
     prepare_ligand_script = os.path.join(mgltools_path, "MGLToolsPckgs", "AutoDockTools", "Utilities24", "prepare_ligand4.py")
-    command = f"pythonsh {prepare_ligand_script} -l {ligand_pdb} -o {output_pdbqt}"
+    command = f"{pythonsh} {prepare_ligand_script} -l {ligand_pdb} -o {output_pdbqt}"
     subprocess.run(command, shell=True, check=True)
     print(f"Ligand prepared: {output_pdbqt}")
 
@@ -250,7 +252,7 @@ def main(input_dir, recursive=False):
                 full_results.extend(subdir_results)
 
 
-            output_csv = os.path.join(input_dir, f"{input_dir.rstrip(os.sep)}_docking_results.csv")
+            output_csv = os.path.join(input_dir, f"{os.path.basename(input_dir.rstrip(os.sep))}_docking_results.csv")
             
 
             write_docking_results_to_csv(full_results, output_csv)
