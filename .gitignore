@@ -1,5 +1,4 @@
 Dockerfile
 FastScorelocal.py
-prepare_ligand4.py
 /analysis
 /tests

@@ -15,3 +15,6 @@ and MGL tools:
 https://ccsb.scripps.edu/mgltools/downloads/
 
 you may need to reassert usr/bin/ to $PATH as MGL tools has a version of openBabel
+note the prepare_ligand4.py from MGL tools (/path/to/MGLxxx/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand.py) is bugged, the existing one in this directory is a template for the correct one (uncomment line 105, comment out 106)
+
+added deprotonate function using schrodinger ligprep to generate AF3 structures at pH 7.4
